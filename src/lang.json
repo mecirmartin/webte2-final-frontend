@@ -1,0 +1,12 @@
+{
+  "en": {
+    "translation": {
+      "welcome.message": "Welcome to React and react-i18next"
+    }
+  },
+  "sk": {
+    "translation": {
+      "welcome.message": "Vitejte v React a react-i18next"
+    }
+  }
+}
