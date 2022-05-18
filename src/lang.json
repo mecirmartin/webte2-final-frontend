@@ -1,12 +1,22 @@
 {
   "en": {
     "translation": {
-      "welcome.message": "Welcome to React and react-i18next"
+      "welcome.message": "Welcome to main page",
+      "navbar.main.message": "Main page",
+      "navbar.users.message": "Users",
+      "switch.anime.message": "Animation",
+      "switch.graph.message": "Graph",
+      "form.user.message": "User Name"
     }
   },
   "sk": {
     "translation": {
-      "welcome.message": "Vitejte v React a react-i18next"
+      "welcome.message": "Vitejte na hlavnej stránke",
+      "navbar.main.message": "Hlavná stránka",
+      "navbar.users.message": "Používatelia",
+      "switch.anime.message": "Animácia",
+      "switch.graph.message": "Graf",
+      "form.user.message": "Meno používateľa"
     }
   }
 }
