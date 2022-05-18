@@ -22,17 +22,17 @@ const AppBody = () => {
       alignItems="center"
     >
       <Grid width="80%">
-        {visibleElement === "graph" && <AppGraph></AppGraph>}
-        {visibleElement === "anime" && <AppAnimation></AppAnimation>}
+        {visibleElement === "graph" && <AppGraph />}
+        {visibleElement === "anime" && <AppAnimation />}
         {visibleElement === "both" && (
           <Grid>
-            <AppGraph></AppGraph>
-            <AppAnimation></AppAnimation>
+            <AppGraph />
+            <AppAnimation />
           </Grid>
         )}
       </Grid>
       <AppSwitch setVisibleElement={setvisibleElement}></AppSwitch>
-      <AppForm></AppForm>
+      <AppForm />
     </Grid>
   );
 };

@@ -7,8 +7,8 @@ import {useEffect} from "react";
 const App = () => {
   return (
     <div className="App">
-      <AppHeader></AppHeader>
-      <AppBody></AppBody>
+      <AppHeader />
+      <AppBody />
     </div>
   );
 };
