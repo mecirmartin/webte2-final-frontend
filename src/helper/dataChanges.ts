@@ -26,7 +26,7 @@ export const formattedData = async () => {
 };
 
 const fetchApiData = {
-  r: 2,
+  r: 0.1,
   initialValues: [0, 0, 0, 0],
 } as any;
 
