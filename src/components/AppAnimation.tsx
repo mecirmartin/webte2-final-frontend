@@ -1,4 +1,4 @@
-import {Grid} from "@mui/material";
+import {CircularProgress, Grid} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import "../index.css";
 import {formattedData, WHEEL_R} from "../helper/dataChanges";
@@ -7,13 +7,16 @@ import useImage from "use-image";
 import car from "../images/auto.png";
 import wheel from "../images/koleso.png";
 
-const AppAnimation = () => {
+interface Props {
+  wheel_r: number;
+}
+
+const AppAnimation = ({wheel_r}: Props) => {
   const [data, setData] = useState<any>(null);
-  // const [interval, setInterval] = useState<number>(1);
   const [lineData, setLineData] = useState<Array<number>>([]);
 
   useEffect(() => {
-    formattedData().then((fetchData) => {
+    formattedData(wheel_r, [0, 0, 0, 0]).then((fetchData) => {
       setData(fetchData);
       console.log("fetchData", fetchData);
     });
@@ -25,7 +28,7 @@ const AppAnimation = () => {
 
     const reducedData = data?.x3?.reduce(
       (acc: number[], x: any, i: number) =>
-        acc.concat([i * 2, 70 - x.y * (200 / WHEEL_R)]),
+        acc.concat([i * 2, 70 - x.y * (200 / wheel_r)]),
       []
     );
 
@@ -47,12 +50,12 @@ const AppAnimation = () => {
         //@ts-ignore
         leftRef?.current?.to({
           x: 223,
-          y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
+          y: 115 + (data.x1[i].y - wheel_r) * (100 / wheel_r),
         });
         // @ts-ignore
         rightRef?.current?.to({
           x: 508,
-          y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
+          y: 115 + (data.x1[i].y - wheel_r) * (100 / wheel_r),
         });
         //@ts-ignore
         lineRef?.current?.to({
@@ -114,43 +117,43 @@ const AppAnimation = () => {
     );
   };
 
-  return (
-    data && (
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        marginTop="1rem"
-        marginBottom="1rem"
-      >
-        <Stage width={800} height={300}>
-          <Layer>
-            <CarImage></CarImage>
-            <LeftWheelImage></LeftWheelImage>
-            <RightWheelImage></RightWheelImage>
-            <Line
-              ref={lineRef}
-              x={0}
-              y={115}
-              points={lineData}
-              strokeWidth={1}
-              fill="black"
-              closed
-              stroke="black"
-            />
-            <Line
-              x={0}
-              y={115}
-              points={[0, 75, 800, 75]}
-              strokeWidth={10}
-              closed
-              stroke="black"
-            />
-          </Layer>
-        </Stage>
-      </Grid>
-    )
+  return data ? (
+    <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      marginTop="1rem"
+      marginBottom="1rem"
+    >
+      <Stage width={800} height={300}>
+        <Layer>
+          <CarImage></CarImage>
+          <LeftWheelImage></LeftWheelImage>
+          <RightWheelImage></RightWheelImage>
+          <Line
+            ref={lineRef}
+            x={0}
+            y={115}
+            points={lineData}
+            strokeWidth={1}
+            fill="black"
+            closed
+            stroke="black"
+          />
+          <Line
+            x={0}
+            y={115}
+            points={[0, 75, 800, 75]}
+            strokeWidth={10}
+            closed
+            stroke="black"
+          />
+        </Layer>
+      </Stage>
+    </Grid>
+  ) : (
+    <CircularProgress color="success" />
   );
 };
 

@@ -18,7 +18,7 @@ const AppSwitch = ({setVisibleElement}: AppSwitchProps) => {
   const {t} = useTranslation();
 
   const [state, setState] = React.useState({
-    animation: false,
+    animation: true,
     graph: false,
   });
 

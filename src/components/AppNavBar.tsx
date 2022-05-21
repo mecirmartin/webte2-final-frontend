@@ -3,6 +3,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import React from "react";
 import {useTranslation} from "react-i18next";
+import AppEmail from "./AppEmail";
 
 const AppNavBar = () => {
   const {t} = useTranslation();
@@ -38,6 +39,7 @@ const AppNavBar = () => {
       >
         <MenuItem onClick={handleClose}> {t("navbar.main.message")}</MenuItem>
         <MenuItem onClick={handleClose}>{t("navbar.users.message")}</MenuItem>
+        <AppEmail />
       </Menu>
     </>
   );

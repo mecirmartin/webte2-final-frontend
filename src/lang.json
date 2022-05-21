@@ -8,7 +8,14 @@
       "switch.graph.message": "Graph",
       "form.user.message": "User Name",
       "calc.input.message": "Type command",
-      "calc.submit.message": "Submit"
+      "calc.submit.message": "Submit",
+      "email.send.message": "Send logs",
+      "email.successTitle.message": "Success",
+      "email.success.message": "Email with logs was send successfully",
+      "dialog.message": "Enter radius of the car wheels",
+      "dialog.message.cancel": "Cancel",
+      "dialog.message.submit": "Submit",
+      "dialog.message.reopen": "Change radius"
     }
   },
   "sk": {
@@ -19,7 +26,14 @@
       "switch.anime.message": "Animácia",
       "switch.graph.message": "Graf",
       "form.user.message": "Meno používateľa",
-      "calc.submit.message": "Odoslať"
+      "calc.submit.message": "Odoslať",
+      "email.send.message": "Zaslať logy",
+      "email.successTitle.message": "Úspech",
+      "email.success.message": "Email s logmi bol úspešne odoslaný",
+      "dialog.message": "Zadajte polomer kolies auta",
+      "dialog.message.cancel": "Zavrieť",
+      "dialog.message.submit": "Potvrdiť",
+      "dialog.message.reopen": "Zmeniť polomer"
     }
   }
 }
