@@ -1,7 +1,7 @@
 import {Grid} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import "../index.css";
-import {formattedData} from "../helper/dataChanges";
+import {formattedData, WHEEL_R} from "../helper/dataChanges";
 import {Layer, Stage, Image, Line} from "react-konva";
 import useImage from "use-image";
 import car from "../images/auto.png";
@@ -9,16 +9,62 @@ import wheel from "../images/koleso.png";
 
 const AppAnimation = () => {
   const [data, setData] = useState<any>(null);
-  const [interval, setInterval] = useState<number>(1);
+  // const [interval, setInterval] = useState<number>(1);
   const [lineData, setLineData] = useState<Array<number>>([]);
 
   useEffect(() => {
     formattedData().then((fetchData) => {
       setData(fetchData);
+      console.log("fetchData", fetchData);
     });
   }, []);
 
-  let increment = 1;
+  console.log("line", lineData);
+  useEffect(() => {
+    if (!data) return;
+
+    const reducedData = data?.x3?.reduce(
+      (acc: number[], x: any, i: number) =>
+        acc.concat([i * 2, 70 - x.y * (200 / WHEEL_R)]),
+      []
+    );
+
+    setLineData(reducedData);
+    console.log("lineData", lineData);
+
+    let increment = 1;
+    const interval = data?.x1[1].x * 1000;
+
+    console.log("data", data.x1);
+
+    data.x3?.forEach((el: any, i: number) => {
+      const run = setTimeout(() => {
+        //@ts-ignore
+        carRef?.current?.to({
+          x: 650,
+          y: -50 + el.y * 100,
+        });
+        //@ts-ignore
+        leftRef?.current?.to({
+          x: 223,
+          y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
+        });
+        //@ts-ignore
+        rightRef?.current?.to({
+          x: 508,
+          y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
+        });
+        //@ts-ignore
+        lineRef?.current?.to({
+          x: i * 10,
+          y: 115,
+        });
+
+        clearTimeout(run);
+      }, interval * increment);
+      increment = increment + 1;
+    });
+  }, [data]);
 
   const carRef = React.useRef(null);
   const leftRef = React.useRef(null);
@@ -67,45 +113,6 @@ const AppAnimation = () => {
       />
     );
   };
-
-  useEffect(() => {
-    if (data) {
-      setInterval(data?.x1?.[1]?.x * 1000);
-      data.x1?.forEach((x: any, i: any) => {
-        setLineData([...lineData, i * 2]);
-        setLineData([...lineData, 70 - (x.y - 0.1) * 100]);
-      });
-      console.log("line data", lineData);
-
-      data.x3?.forEach((el: any, i: any) => {
-        const run = setTimeout(() => {
-          //@ts-ignore
-          carRef?.current?.to({
-            x: 650,
-            y: -50 + el.y * 1001,
-          });
-          //@ts-ignore
-          leftRef?.current?.to({
-            x: 223,
-            y: 115 + data.x1[i].y * 10,
-          });
-          //@ts-ignore
-          rightRef?.current?.to({
-            x: 508,
-            y: 115 + data.x1[i].y * 10,
-          });
-          //@ts-ignore
-          lineRef?.current?.to({
-            x: i * 10,
-            y: 115,
-          });
-
-          clearTimeout(run);
-        }, interval * increment);
-        increment = increment + 1;
-      });
-    }
-  }, [data]);
 
   return (
     data && (
