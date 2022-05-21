@@ -1,13 +1,63 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.canvas {
+  width: 500px;
+  height: 300px;
+  position: relative;
+}
+
+.car {
+  position: absolute;
+  top: 0px;
+  left: 50px;
+}
+
+.wheel-left {
+  position: absolute;
+  top: 150px;
+  left: 110px;
+  animation-name: animate-wheels;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.wheel-right {
+  position: absolute;
+  top: 150px;
+  right: 110px;
+  animation-name: animate-wheels;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes animate-wheels {
+  0% {
+    animation-timing-function: linear;
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.line {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 5px;
+  top: 200px;
 }
