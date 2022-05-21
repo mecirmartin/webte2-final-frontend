@@ -6,7 +6,9 @@
       "navbar.users.message": "Users",
       "switch.anime.message": "Animation",
       "switch.graph.message": "Graph",
-      "form.user.message": "User Name"
+      "form.user.message": "User Name",
+      "calc.input.message": "Type command",
+      "calc.submit.message": "Submit"
     }
   },
   "sk": {
@@ -16,7 +18,8 @@
       "navbar.users.message": "Používatelia",
       "switch.anime.message": "Animácia",
       "switch.graph.message": "Graf",
-      "form.user.message": "Meno používateľa"
+      "form.user.message": "Meno používateľa",
+      "calc.submit.message": "Odoslať"
     }
   }
 }

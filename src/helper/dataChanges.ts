@@ -46,3 +46,27 @@ const fetchData = async () => {
   );
   return res.text();
 };
+
+const fetchCalculationData = {
+  command: "1+1" as string,
+};
+
+const fetchCalculation = async (command: string) => {
+  const res = await fetch(
+    "https://site128.webte.fei.stuba.sk/api/calculation",
+    {
+      method: "POST",
+      headers: {
+        Authorization: "c5b90ab4-d970-48cf-93e3-3f14a023b064",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({command: command}),
+    }
+  );
+  return res.text();
+};
+
+export const calculationData = async (command: string) => {
+  const data: string = await fetchCalculation(command);
+  return data;
+};

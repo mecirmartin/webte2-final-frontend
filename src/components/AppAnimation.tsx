@@ -49,7 +49,7 @@ const AppAnimation = () => {
           x: 223,
           y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
         });
-        //@ts-ignore
+        // @ts-ignore
         rightRef?.current?.to({
           x: 508,
           y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),

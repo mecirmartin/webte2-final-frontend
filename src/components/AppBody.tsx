@@ -1,6 +1,7 @@
 import {Grid} from "@mui/material";
 import React, {useState} from "react";
 import AppAnimation from "./AppAnimation";
+import AppCalculation from "./AppCalculation";
 import AppForm from "./AppForm";
 import AppGraph from "./AppGraph";
 import AppSwitch from "./AppSwitch";
@@ -32,7 +33,8 @@ const AppBody = () => {
         )}
       </Grid>
       <AppSwitch setVisibleElement={setvisibleElement}></AppSwitch>
-      <AppForm />
+      {/* <AppForm /> */}
+      <AppCalculation />
     </Grid>
   );
 };
