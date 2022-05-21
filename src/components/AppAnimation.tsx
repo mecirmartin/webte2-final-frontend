@@ -1,7 +1,7 @@
 import {Grid} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import "../index.css";
-import {formattedData} from "../helper/dataChanges";
+import {formattedData, WHEEL_R} from "../helper/dataChanges";
 import {Layer, Stage, Image, Line} from "react-konva";
 import useImage from "use-image";
 import car from "../images/auto.png";
@@ -9,7 +9,7 @@ import wheel from "../images/koleso.png";
 
 const AppAnimation = () => {
   const [data, setData] = useState<any>(null);
-  const [interval, setInterval] = useState<number>(2);
+  // const [interval, setInterval] = useState<number>(1);
   const [lineData, setLineData] = useState<Array<number>>([]);
 
   useEffect(() => {
@@ -22,23 +22,22 @@ const AppAnimation = () => {
   console.log("line", lineData);
   useEffect(() => {
     if (!data) return;
-    let increment = 1;
 
-    setInterval(data?.x1?.[1]?.x * 1000);
-    console.log("tu", data);
-
-    const reducedData = data?.x1?.reduce(
+    const reducedData = data?.x3?.reduce(
       (acc: number[], x: any, i: number) =>
-        acc.concat([i * 2, 70 - (x.y - 0.1) * 100]),
+        acc.concat([i * 2, 70 - x.y * (200 / WHEEL_R)]),
       []
     );
 
     setLineData(reducedData);
-
-    console.log("interval", interval);
     console.log("lineData", lineData);
 
-    data.x3?.forEach((el: any, i: any) => {
+    let increment = 1;
+    const interval = data?.x1[1].x * 1000;
+
+    console.log("data", data.x1);
+
+    data.x3?.forEach((el: any, i: number) => {
       const run = setTimeout(() => {
         //@ts-ignore
         carRef?.current?.to({
@@ -48,12 +47,12 @@ const AppAnimation = () => {
         //@ts-ignore
         leftRef?.current?.to({
           x: 223,
-          y: 115 + data.x1[i].y * 100,
+          y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
         });
         //@ts-ignore
         rightRef?.current?.to({
           x: 508,
-          y: 115 + data.x1[i].y * 100,
+          y: 115 + (data.x1[i].y - WHEEL_R) * (100 / WHEEL_R),
         });
         //@ts-ignore
         lineRef?.current?.to({
