@@ -2,10 +2,10 @@ import "./App.css";
 
 import Header from "./components/Header";
 import Body from "./components/Body";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Users from "./components/Users";
-import {useState} from "react";
+import { useState } from "react";
 
 const App = () => {
   const [activeUsers, setactiveUsers] = useState<Boolean>(false);
@@ -20,7 +20,7 @@ const App = () => {
             element={
               <>
                 <Header message="welcome.message" />
-                <Body setUserId={setUser} />
+                <Body setUserId={setUser} userId={user} />
               </>
             }
           />

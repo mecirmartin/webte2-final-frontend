@@ -7,27 +7,25 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import React, {useState} from "react";
-import {useTranslation} from "react-i18next";
-import {createUser} from "../helper/usersData";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { deleteUser } from "../helper/dataChanges";
+import { createUser } from "../helper/usersData";
 import Animation from "./Animation";
 import Calculation from "./Calculation";
 import Graph from "./Graph";
 import Switch from "./Switch";
 
-const AppBody = (setUserId: any) => {
-  const [visibleElement, setvisibleElement] = useState<
-    "graph" | "anime" | "both" | "none"
-  >("both");
+const AppBody = (props: any) => {
+  const [visibleElement, setvisibleElement] = useState<"graph" | "anime" | "both" | "none">("both");
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [open, setOpen] = React.useState<Boolean>(true);
   const [wheelR, setWheelR] = React.useState<number>(1);
-  const [initValues, setInitValues] = React.useState<Array<number>>([
-    2, 2, 2, 2,
-  ]);
+  const [initValues, setInitValues] = React.useState<Array<number>>([2, 2, 2, 2]);
   const [userName, setUserName] = useState<string>("");
+  const [userCreated, setuserCreated] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,9 +33,10 @@ const AppBody = (setUserId: any) => {
 
   const handleClose = () => {
     if (userName != "") {
-      createUser(userName, wheelR, initValues).then((fetchData) => {
-        setUserId(fetchData.id);
-        console.log(fetchData);
+      createUser(userName, wheelR, initValues).then(fetchData => {
+        console.log("SETUJEM", fetchData.id, props);
+        props.setUserId(fetchData.id);
+        setuserCreated(true);
       });
     }
     setOpen(false);
@@ -49,6 +48,20 @@ const AppBody = (setUserId: any) => {
   const handleUserNameChange = (e: any) => {
     setUserName(e?.target?.value);
   };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: any) => {
+      if (props.userId) {
+        deleteUser(props.userId);
+        event.returnValue = null;
+        return null;
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [props.userId]);
 
   return open ? (
     <Dialog open={true} onClose={handleClose}>
@@ -64,15 +77,17 @@ const AppBody = (setUserId: any) => {
           value={wheelR}
           onChange={handleChange}
         />
-        <TextField
-          label={t("dialog.message.name")}
-          margin="dense"
-          id="name"
-          fullWidth
-          variant="outlined"
-          value={userName}
-          onChange={handleUserNameChange}
-        />
+        {!userCreated && (
+          <TextField
+            label={t("dialog.message.name")}
+            margin="dense"
+            id="name"
+            fullWidth
+            variant="outlined"
+            value={userName}
+            onChange={handleUserNameChange}
+          />
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>{t("dialog.message.cancel")}</Button>
@@ -80,17 +95,10 @@ const AppBody = (setUserId: any) => {
       </DialogActions>
     </Dialog>
   ) : (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Grid container direction="column" justifyContent="center" alignItems="center">
       <h2>{userName}</h2>
       <Grid width="80%">
-        {visibleElement === "graph" && (
-          <Graph wheel_r={wheelR} init={initValues} />
-        )}
+        {visibleElement === "graph" && <Graph wheel_r={wheelR} init={initValues} />}
         {visibleElement === "anime" && (
           <Animation wheel_r={wheelR ? wheelR : 1} init={[0, 0, 0, 0]} />
         )}
