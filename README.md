@@ -1,3 +1,7 @@
+# This project is CRA based app with docker configuration
+
+Docker configuration is in `Dockerfile` and `docker-compose.dev.yml`, you can spin up container with command `yarn dev`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

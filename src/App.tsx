@@ -21,7 +21,7 @@ const App = () => {
             element={
               <>
                 <Header message="welcome.message" />
-                <Body setUserId={setUser} />
+                <Body setUserId={setUser} userId={user} />
               </>
             }
           />
