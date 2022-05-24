@@ -9,7 +9,7 @@ const AppCalculation = () => {
   const [value, setValue] = useState("");
   const [output, setOutput] = useState("");
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     calculationData(value).then((fetchData) => setOutput(fetchData));

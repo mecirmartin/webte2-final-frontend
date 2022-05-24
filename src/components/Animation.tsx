@@ -12,6 +12,11 @@ interface Props {
   init: Array<number>;
 }
 
+interface DataProps {
+  x: number;
+  y: number;
+}
+
 const AppAnimation = ({wheel_r, init}: Props) => {
   const [data, setData] = useState<any>(null);
   const [lineData, setLineData] = useState<Array<number>>([]);
@@ -30,13 +35,18 @@ const AppAnimation = ({wheel_r, init}: Props) => {
       x: 0,
       y: 115,
     });
-    data.x3?.forEach((el: any, i: number) => {
+    //@ts-ignore
+    lineRef2?.current?.to({
+      x: 0,
+      y: 111,
+    });
+    data.x3?.forEach((el: DataProps, i: number) => {
       const run = setTimeout(() => {
         setTimeout(() => {
           //@ts-ignore
           carRef?.current?.to({
             x: 650,
-            y: -50 + el.y * 400,
+            y: -50 + el.y * 600,
           });
         }, 500);
         setTimeout(() => {
@@ -55,8 +65,13 @@ const AppAnimation = ({wheel_r, init}: Props) => {
         }, 1000);
         //@ts-ignore
         lineRef?.current?.to({
-          x: i * 10 > 1000 ? 1000 : i * 10,
+          x: i * 10,
           y: 115,
+        });
+        //@ts-ignore
+        lineRef2?.current?.to({
+          x: i * 10,
+          y: 111,
         });
 
         clearTimeout(run);
@@ -69,7 +84,7 @@ const AppAnimation = ({wheel_r, init}: Props) => {
     if (!data) return;
 
     const reducedData = data?.x3?.reduce(
-      (acc: number[], x: any, i: number) =>
+      (acc: number[], x: DataProps, i: number) =>
         acc.concat([i * 2, 70 - x.y * (200 / wheel_r)]),
       []
     );
@@ -79,7 +94,7 @@ const AppAnimation = ({wheel_r, init}: Props) => {
     const interval = data?.x1[1].x * 1000;
     let intervalTime = 3000;
     animateElements(interval);
-    const animationInterval = setInterval(() => {
+    setInterval(() => {
       animateElements(interval);
     }, intervalTime);
   }, [data]);
@@ -88,6 +103,7 @@ const AppAnimation = ({wheel_r, init}: Props) => {
   const leftRef = React.useRef(null);
   const rightRef = React.useRef(null);
   const lineRef = React.useRef(null);
+  const lineRef2 = React.useRef(null);
 
   const CarImage = () => {
     const [image] = useImage(car);
@@ -151,18 +167,20 @@ const AppAnimation = ({wheel_r, init}: Props) => {
             x={0}
             y={115}
             points={lineData}
-            strokeWidth={5}
-            fill="black"
+            strokeWidth={6}
+            lineJoin="round"
             stroke="black"
           />
-          {/* <Line
+          <Line
+            ref={lineRef2}
             x={0}
             y={115}
-            points={[0, 75, 800, 75]}
-            strokeWidth={10}
+            points={[-10000, 75, 0, 75]}
+            strokeWidth={6}
             closed
+            lineJoin="round"
             stroke="black"
-          /> */}
+          />
         </Layer>
       </Stage>
     </Grid>

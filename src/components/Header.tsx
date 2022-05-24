@@ -19,7 +19,7 @@ interface Props {
 const AppHeader = ({message}: Props) => {
   const {t, i18n} = useTranslation();
 
-  const [selectedValue, setselectedValue] = useState("en");
+  const [selectedValue, setselectedValue] = useState<"en" | "sk">("en");
 
   const theme = createTheme({
     palette: {

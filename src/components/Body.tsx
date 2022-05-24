@@ -23,8 +23,8 @@ const AppBody = (setUserId: any) => {
   const {t} = useTranslation();
 
   const [open, setOpen] = React.useState<Boolean>(true);
-  const [wheelR, setWheelR] = React.useState<number>(1);
-  const [initValues] = React.useState<Array<number>>([0, 0, 0, 0]);
+  const [wheelR, setWheelR] = React.useState<number>(0.1);
+  const [initValues] = React.useState<Array<number>>([wheelR, wheelR, 0, 0]);
   const [userName, setUserName] = useState<string>("");
 
   const handleClickOpen = () => {
@@ -42,11 +42,13 @@ const AppBody = (setUserId: any) => {
   };
 
   const handleChange = (e: any) => {
-    if (e?.target?.value > 1) e.target.value = 1;
-    if (e?.target?.value < -1) e.target.value = -1;
-    setWheelR(e?.target?.value);
+    if (e?.target?.value) {
+      if (e?.target?.value > 1) e.target.value = 1;
+      if (e?.target?.value < -1) e.target.value = -1;
+      setWheelR(parseFloat(e?.target?.value));
+    }
   };
-  const handleUserNameChange = (e: any) => {
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e?.target?.value);
   };
 

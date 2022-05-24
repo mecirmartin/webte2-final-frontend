@@ -1,8 +1,6 @@
 import {Grid} from "@mui/material";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {getUsers} from "../helper/usersData";
-import Graph from "./Graph";
-import Animation from "./Animation";
 import User from "./User";
 
 interface UserProps {
@@ -28,12 +26,10 @@ const AppUsers = () => {
     }, 3000);
   }, []);
 
-  console.log(users);
-  // return users[0] && <User user={users[0]}></User>;
   return (
     <Grid>
-      {users.map((user) => (
-        <User user={user}></User>
+      {users.map((user, i) => (
+        <User key={i} user={user}></User>
       ))}
     </Grid>
   );
