@@ -5,8 +5,13 @@ import React, {Dispatch, SetStateAction} from "react";
 import {useTranslation} from "react-i18next";
 import Email from "./Email";
 import {useNavigate} from "react-router-dom";
+import {deleteUser} from "../helper/dataChanges";
 
-const AppNavBar = () => {
+interface AppNavBarProps {
+  userId: number;
+}
+
+const AppNavBar = ({userId}: AppNavBarProps) => {
   const {t} = useTranslation();
   let navigate = useNavigate();
 
@@ -52,6 +57,7 @@ const AppNavBar = () => {
         <MenuItem
           onClick={() => {
             handleClose();
+            if (userId) deleteUser(userId);
             navigate("/about");
           }}
         >
@@ -60,6 +66,8 @@ const AppNavBar = () => {
         <MenuItem
           onClick={() => {
             handleClose();
+            console.log("user ID", userId);
+            if (userId) deleteUser(userId);
             navigate("/users");
           }}
         >
@@ -68,6 +76,7 @@ const AppNavBar = () => {
         <MenuItem
           onClick={() => {
             handleClose();
+            if (userId) deleteUser(userId);
             navigate("/documentation");
           }}
         >

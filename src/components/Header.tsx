@@ -14,9 +14,10 @@ import NavBar from "./NavBar";
 
 interface Props {
   message: string;
+  user: number;
 }
 
-const AppHeader = ({message}: Props) => {
+const AppHeader = ({message, user}: Props) => {
   const {t, i18n} = useTranslation();
 
   const [selectedValue, setselectedValue] = useState<"en" | "sk">("en");
@@ -37,7 +38,7 @@ const AppHeader = ({message}: Props) => {
       <Box sx={{flexGrow: 1}} color="#A6D1C9">
         <AppBar position="static">
           <Toolbar>
-            <NavBar></NavBar>
+            <NavBar userId={user}></NavBar>
             <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
               {t(message)}
             </Typography>
