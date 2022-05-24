@@ -24,9 +24,7 @@ const AppBody = (setUserId: any) => {
 
   const [open, setOpen] = React.useState<Boolean>(true);
   const [wheelR, setWheelR] = React.useState<number>(1);
-  const [initValues, setInitValues] = React.useState<Array<number>>([
-    2, 2, 2, 2,
-  ]);
+  const [initValues] = React.useState<Array<number>>([0, 0, 0, 0]);
   const [userName, setUserName] = useState<string>("");
 
   const handleClickOpen = () => {
@@ -34,7 +32,7 @@ const AppBody = (setUserId: any) => {
   };
 
   const handleClose = () => {
-    if (userName != "") {
+    if (userName !== "") {
       createUser(userName, wheelR, initValues).then((fetchData) => {
         setUserId(fetchData.id);
         console.log(fetchData);
@@ -44,6 +42,8 @@ const AppBody = (setUserId: any) => {
   };
 
   const handleChange = (e: any) => {
+    if (e?.target?.value > 1) e.target.value = 1;
+    if (e?.target?.value < -1) e.target.value = -1;
     setWheelR(e?.target?.value);
   };
   const handleUserNameChange = (e: any) => {
