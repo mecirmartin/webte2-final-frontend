@@ -2,21 +2,60 @@
   "en": {
     "translation": {
       "welcome.message": "Welcome to main page",
+      "welcome.message.desc": "Welcome to description of API",
       "navbar.main.message": "Main page",
       "navbar.users.message": "Users",
+      "navbar.about.message": "Description",
       "switch.anime.message": "Animation",
       "switch.graph.message": "Graph",
-      "form.user.message": "User Name"
+      "form.user.message": "User Name",
+      "calc.input.message": "Type command",
+      "calc.submit.message": "Submit",
+      "email.send.message": "Send logs",
+      "email.successTitle.message": "Success",
+      "email.success.message": "Email with logs was send successfully",
+      "dialog.message": "Enter radius of the car wheels and user name",
+      "dialog.message.cancel": "Cancel",
+      "dialog.message.submit": "Submit",
+      "dialog.message.reopen": "Change radius and user name",
+      "dialog.message.name": "User name",
+      "dialog.message.radius": "Radius",
+
+      "descrition.num1": "Language on this site can be changed simply by clicking on the wanted langauge. There are two languages available. English and slovak language.",
+      "descrition.num2": "By clicking on a checkbox, you can show or hide a graph, which shows the value x dependent on time.",
+      "descrition.num3": "By clicking on a checkbox, you can show or hide an animation, which shows operation of shock absorbers on car.",
+      "descrition.num4": "Clicking the button show a context menu, in which you can visit the front page, show API documentation and where you can send an email with logs in CSV format to user.",
+      "descrition.num5": "In this are you can change the radius of car wheel and user name.",
+      "descrition.num6": "After inputting a command, by clicking on submit button, you get the command evaluated and you get an answer shown."
     }
   },
   "sk": {
     "translation": {
       "welcome.message": "Vitejte na hlavnej stránke",
+      "welcome.message.desc": "Vitajte v popise API",
       "navbar.main.message": "Hlavná stránka",
       "navbar.users.message": "Používatelia",
+      "navbar.about.message": "Popis",
       "switch.anime.message": "Animácia",
       "switch.graph.message": "Graf",
-      "form.user.message": "Meno používateľa"
+      "form.user.message": "Meno používateľa",
+      "calc.submit.message": "Odoslať",
+      "calc.input.message": "Zadajte príkaz",
+      "email.send.message": "Zaslať logy",
+      "email.successTitle.message": "Úspech",
+      "email.success.message": "Email s logmi bol úspešne odoslaný",
+      "dialog.message": "Zadajte polomer kolies auta a meno používateľa",
+      "dialog.message.cancel": "Zavrieť",
+      "dialog.message.submit": "Potvrdiť",
+      "dialog.message.reopen": "Zmeniť polomer a používateľa",
+      "dialog.message.name": "Používateľské meno",
+      "dialog.message.radius": "Polomer",
+      "descrition.num1": "Jazyk webovej stránky sa dá zmeniť jednoducho kliknutím na požadovaný jazyk. Momentálne sú na výber dva jazyky. Anglicky a slovenský jazyk.",
+      "descrition.num2": "Po kliknutí na prepínač sa dá zobraziť, alebo skryť graf, ktorý zobrazuje závislosť hodnoty x od času.",
+      "descrition.num3": "Po kliknutí na prepínač sa dá zobraziť, alebo skryť simulácia auta, ktorá zobrazuje činnosť tlmičov na aute.",
+      "descrition.num4": "Kliknutie na tlačidla zobrazí kontextové okno, v ktorom sa môžeme prepnúť na úvodnú stránku, na zobrazenie popisu API a v ktorom môžeme odoslať email slogmi vo formáte CSV používateľovi.",
+      "descrition.num5": "V tejto časti sa dá zmeniť veľkosť polomeru kolies auta a meno používateľa.",
+      "descrition.num6": "Po zadaní príkazu do textového poľa a kliknutí na tlačidlo sa vyhodnotí príkaz a zobrazí sa odpoveď."
     }
   }
 }

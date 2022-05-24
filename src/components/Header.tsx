@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 import {
   Box,
   AppBar,
@@ -10,9 +10,13 @@ import {
 } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import {useTranslation} from "react-i18next";
-import AppNavBar from "./AppNavBar";
+import NavBar from "./NavBar";
 
-const AppHeader = () => {
+interface Props {
+  message: string;
+}
+
+const AppHeader = ({message}: Props) => {
   const {t, i18n} = useTranslation();
 
   const [selectedValue, setselectedValue] = useState("en");
@@ -33,9 +37,9 @@ const AppHeader = () => {
       <Box sx={{flexGrow: 1}} color="#A6D1C9">
         <AppBar position="static">
           <Toolbar>
-            <AppNavBar></AppNavBar>
+            <NavBar></NavBar>
             <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-              {t("welcome.message")}
+              {t(message)}
             </Typography>
             <ToggleButtonGroup
               value={selectedValue}
