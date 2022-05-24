@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import About from "./components/About";
 import Users from "./components/Users";
 import {useState} from "react";
+import Documentation from "./components/Documentation";
 
 const App = () => {
   const [activeUsers, setactiveUsers] = useState<Boolean>(false);
@@ -39,6 +40,15 @@ const App = () => {
               <>
                 <Header message="navbar.users.message" />
                 <Users />
+              </>
+            }
+          />
+          <Route
+            path="documentation"
+            element={
+              <>
+                <Header message="navbar.doc.message" />
+                <Documentation />
               </>
             }
           />

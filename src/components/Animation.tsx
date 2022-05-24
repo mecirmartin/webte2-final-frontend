@@ -46,21 +46,21 @@ const AppAnimation = ({wheel_r, init}: Props) => {
           //@ts-ignore
           carRef?.current?.to({
             x: 650,
-            y: -50 + el.y * 600,
+            y: -55 + el.y * 600,
           });
         }, 500);
         setTimeout(() => {
           //@ts-ignore
           leftRef?.current?.to({
             x: 223,
-            y: 115 + (data.x1[i].y - wheel_r) * 200,
+            y: 115 + (data.x1[i].y - wheel_r) * 150,
           });
         }, 500);
         setTimeout(() => {
           // @ts-ignore
           rightRef?.current?.to({
             x: 508,
-            y: 115 + (data.x1[i].y - wheel_r) * 200,
+            y: 115 + (data.x1[i].y - wheel_r) * 150,
           });
         }, 1000);
         //@ts-ignore
@@ -112,7 +112,7 @@ const AppAnimation = ({wheel_r, init}: Props) => {
         ref={carRef}
         scaleX={-1}
         x={650}
-        y={-50}
+        y={-55}
         width={500}
         height={350}
         image={image}

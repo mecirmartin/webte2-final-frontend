@@ -43,8 +43,8 @@ const AppBody = (setUserId: any) => {
 
   const handleChange = (e: any) => {
     if (e?.target?.value) {
-      if (e?.target?.value > 1) e.target.value = 1;
-      if (e?.target?.value < -1) e.target.value = -1;
+      if (e?.target?.value > 2) e.target.value = 2;
+      if (e?.target?.value < -2) e.target.value = -2;
       setWheelR(parseFloat(e?.target?.value));
     }
   };

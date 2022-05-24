@@ -65,6 +65,14 @@ const AppNavBar = () => {
         >
           {t("navbar.users.message")}
         </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            navigate("/documentation");
+          }}
+        >
+          {t("navbar.doc.message")}
+        </MenuItem>
         <Email />
       </Menu>
     </>
