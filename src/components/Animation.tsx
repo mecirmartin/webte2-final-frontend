@@ -22,6 +22,49 @@ const AppAnimation = ({wheel_r, init}: Props) => {
     });
   }, []);
 
+  let increment = 1;
+
+  const animateElements = (interval: number) => {
+    //@ts-ignore
+    lineRef?.current?.to({
+      x: 0,
+      y: 115,
+    });
+    data.x3?.forEach((el: any, i: number) => {
+      const run = setTimeout(() => {
+        setTimeout(() => {
+          //@ts-ignore
+          carRef?.current?.to({
+            x: 650,
+            y: -50 + el.y * 400,
+          });
+        }, 500);
+        setTimeout(() => {
+          //@ts-ignore
+          leftRef?.current?.to({
+            x: 223,
+            y: 115 + (data.x1[i].y - wheel_r) * 200,
+          });
+        }, 500);
+        setTimeout(() => {
+          // @ts-ignore
+          rightRef?.current?.to({
+            x: 508,
+            y: 115 + (data.x1[i].y - wheel_r) * 200,
+          });
+        }, 1000);
+        //@ts-ignore
+        lineRef?.current?.to({
+          x: i * 10 > 1000 ? 1000 : i * 10,
+          y: 115,
+        });
+
+        clearTimeout(run);
+      }, interval * increment);
+      increment = increment + 1;
+    });
+  };
+
   useEffect(() => {
     if (!data) return;
 
@@ -33,49 +76,11 @@ const AppAnimation = ({wheel_r, init}: Props) => {
 
     setLineData(reducedData);
 
-    let increment = 1;
     const interval = data?.x1[1].x * 1000;
-    let intervalTime = 500;
-
+    let intervalTime = 3000;
+    animateElements(interval);
     const animationInterval = setInterval(() => {
-      //@ts-ignore
-      lineRef?.current?.to({
-        x: 0,
-        y: 115,
-      });
-      data.x3?.forEach((el: any, i: number) => {
-        const run = setTimeout(() => {
-          setTimeout(() => {
-            //@ts-ignore
-            carRef?.current?.to({
-              x: 650,
-              y: -50 + el.y * (400 / wheel_r),
-            });
-          }, 500);
-          setTimeout(() => {
-            //@ts-ignore
-            leftRef?.current?.to({
-              x: 223,
-              y: 115 + (data.x1[i].y - wheel_r) * (100 / wheel_r),
-            });
-          }, 500);
-          setTimeout(() => {
-            // @ts-ignore
-            rightRef?.current?.to({
-              x: 508,
-              y: 115 + (data.x1[i].y - wheel_r) * (100 / wheel_r),
-            });
-          }, 1000);
-          //@ts-ignore
-          lineRef?.current?.to({
-            x: i * 10,
-            y: 115,
-          });
-
-          clearTimeout(run);
-        }, interval * increment);
-        increment = increment + 1;
-      });
+      animateElements(interval);
     }, intervalTime);
   }, [data]);
 
@@ -146,19 +151,18 @@ const AppAnimation = ({wheel_r, init}: Props) => {
             x={0}
             y={115}
             points={lineData}
-            strokeWidth={1}
+            strokeWidth={5}
             fill="black"
-            closed
             stroke="black"
           />
-          <Line
+          {/* <Line
             x={0}
             y={115}
             points={[0, 75, 800, 75]}
             strokeWidth={10}
             closed
             stroke="black"
-          />
+          /> */}
         </Layer>
       </Stage>
     </Grid>
